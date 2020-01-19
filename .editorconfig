@@ -9,6 +9,7 @@ trim_trailing_whitespace = true
   .editorconfig,
   .gitattributes,
   .gitignore,
+  .eslintrc,
   package.json,
   README.md,
   src/**.{js,json,html,css,scss,md}

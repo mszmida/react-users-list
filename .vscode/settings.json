@@ -8,5 +8,6 @@
   },
   "editor.formatOnSave": true,
   "eslint.alwaysShowStatus": true,
-  "eslint.enable": true
+  "eslint.enable": true,
+  "files.trimFinalNewlines": true
 }

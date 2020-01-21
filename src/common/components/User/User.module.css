@@ -1,0 +1,18 @@
+.component {
+  margin: 15px 0;
+  font-size: 1.2em;
+}
+
+.id,
+.username {
+  color: #86878a;
+}
+
+.id {
+  margin-right: 10px;
+}
+
+.username {
+  color: #86878a;
+  margin: 0 10px;
+}

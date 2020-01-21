@@ -2,7 +2,13 @@
   "printWidth": 80,
   "semi": true,
   "singleQuote": true,
-  "tabs": false,
+  "useTabs": false,
   "tabWidth": 2,
-  "trailingComma": "none"
+  "trailingComma": "none",
+  "overrides": [
+    {
+      "files": [".huskyrc", ".lintstagedrc"],
+      "options": { "parser": "json" }
+    }
+  ]
 }

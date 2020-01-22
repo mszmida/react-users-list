@@ -1,33 +1,20 @@
 import React from 'react';
 
 import styles from './UsersList.module.css';
-import { User } from '../';
+import { useUsersState } from '../../contexts/UsersContext';
+import { Loader, User } from '../';
 
 function UsersList() {
-  const users = [
-    {
-      id: 1,
-      name: 'Leanne Graham',
-      username: 'Bret'
-    },
-    {
-      id: 2,
-      name: 'Ervin Howell',
-      username: 'Antonette'
-    },
-    {
-      id: 3,
-      name: 'Clementine Bauch',
-      username: 'Samantha'
-    }
-  ];
+  const { status, users } = useUsersState();
 
   return (
-    <div className={styles.component}>
-      {users.map(user => (
-        <User key={user.id} user={user} />
-      ))}
-    </div>
+    <Loader status={status}>
+      <div className={styles.component}>
+        {users.map(user => (
+          <User key={user.id} user={user} />
+        ))}
+      </div>
+    </Loader>
   );
 }
 

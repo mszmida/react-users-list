@@ -1,7 +1,7 @@
 import React from 'react';
 
 import styles from './UsersList.module.css';
-import { useUsersState } from '../../contexts/UsersContext';
+import { useUsersState } from '../../contexts/users-context';
 import { Loader, User } from '../';
 
 function UsersList() {

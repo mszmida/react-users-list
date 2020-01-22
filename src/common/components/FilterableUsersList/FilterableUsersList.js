@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 
-import { useUsersDispatcher } from '../../contexts/UsersContext';
+import { useUsersDispatcher } from '../../contexts/users-context';
 import { SearchInput, UsersList } from '../';
-import { UsersProvider } from '../../contexts/UsersContext';
+import { UsersProvider } from '../../contexts/users-context';
 
 function FilterableUsersList() {
   const dispatcher = useUsersDispatcher();

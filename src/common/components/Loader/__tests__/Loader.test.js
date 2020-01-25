@@ -5,7 +5,7 @@ import Loader from '../Loader';
 import { REQUEST_STATUS } from '../../../enums';
 
 describe('<Loader /> component', () => {
-  test('renders loader instead of children for status "IN_PROGRESS"', () => {
+  test(`renders loader instead of children for status "${REQUEST_STATUS.IN_PROGRESS}"`, () => {
     const childRef = React.createRef();
 
     const { getByTestId } = render(
@@ -20,7 +20,7 @@ describe('<Loader /> component', () => {
     expect(childRef.current).not.toBeInTheDocument();
   });
 
-  test('renders children instead of loader for status "SUCCESS"', () => {
+  test(`renders children instead of loader for status "${REQUEST_STATUS.SUCCESS}"`, () => {
     const childRef = React.createRef();
 
     const { queryByTestId } = render(
@@ -35,7 +35,7 @@ describe('<Loader /> component', () => {
     expect(childRef.current).toBeInTheDocument();
   });
 
-  test('renders null for status "IDLE"', () => {
+  test(`renders null for status "${REQUEST_STATUS.IDLE}"`, () => {
     const childRef = React.createRef();
 
     const { queryByTestId } = render(
@@ -50,7 +50,7 @@ describe('<Loader /> component', () => {
     expect(childRef.current).not.toBeInTheDocument();
   });
 
-  test('renders null for status "ERROR"', () => {
+  test(`renders null for status "${REQUEST_STATUS.ERROR}"`, () => {
     const childRef = React.createRef();
 
     const { queryByTestId } = render(

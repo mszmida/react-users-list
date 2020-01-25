@@ -46,7 +46,7 @@ function usersReducer(state, action) {
   }
 }
 
-function UsersProvider({ children }) {
+function UsersProvider({ value, children }) {
   const dispatchRef = React.useRef({});
   const [state, dispatch] = React.useReducer(usersReducer, {
     data: [],
@@ -73,7 +73,7 @@ function UsersProvider({ children }) {
 
   return (
     <UsersDispatcherContext.Provider value={dispatchRef.current}>
-      <UsersStateContext.Provider value={state}>
+      <UsersStateContext.Provider value={value || state}>
         {children}
       </UsersStateContext.Provider>
     </UsersDispatcherContext.Provider>

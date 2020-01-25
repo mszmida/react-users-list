@@ -8,7 +8,7 @@ function Loader({ status, children }) {
   switch (status) {
     case REQUEST_STATUS.IN_PROGRESS:
       return (
-        <div className={styles.component}>
+        <div data-testid="loader" className={styles.component}>
           <div className={styles.loaderDualRing}></div>
         </div>
       );

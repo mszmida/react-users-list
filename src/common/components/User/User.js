@@ -5,7 +5,7 @@ import styles from './User.module.css';
 
 function User({ user }) {
   return (
-    <div className={styles.component}>
+    <div data-testid="user" className={styles.component}>
       <span className={styles.id}>{user.id}.</span>
       <span className={styles.name}>{user.name}</span>
       <span className={styles.username}>@{user.username}</span>

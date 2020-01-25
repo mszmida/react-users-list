@@ -43,5 +43,7 @@ describe('<App /> root component', () => {
     expect(user).toHaveTextContent('1.');
     expect(user).toHaveTextContent('John Doe');
     expect(user).toHaveTextContent('@johny');
+
+    global.fetch.mockRestore();
   });
 });

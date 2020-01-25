@@ -8,45 +8,60 @@ describe('<Loader /> component', () => {
   test('renders loader instead of children for status "IN_PROGRESS"', () => {
     const childRef = React.createRef();
 
-    const { container, asFragment } = render(
+    const { getByTestId } = render(
       <Loader status={REQUEST_STATUS.IN_PROGRESS}>
         <div ref={childRef}>child</div>
       </Loader>
     );
 
-    expect(container.firstChild).not.toContainElement(childRef.current);
-    expect(asFragment()).toMatchSnapshot();
+    const loader = getByTestId('loader');
+
+    expect(loader).toBeInTheDocument();
+    expect(childRef.current).not.toBeInTheDocument();
   });
 
-  test('renders children instead of loader for status "SUCCESS', () => {
+  test('renders children instead of loader for status "SUCCESS"', () => {
     const childRef = React.createRef();
 
-    const { container } = render(
+    const { queryByTestId } = render(
       <Loader status={REQUEST_STATUS.SUCCESS}>
         <div ref={childRef}>child</div>
       </Loader>
     );
 
-    expect(container.firstChild).toContainElement(childRef.current);
+    const loader = queryByTestId('loader');
+
+    expect(loader).not.toBeInTheDocument();
+    expect(childRef.current).toBeInTheDocument();
   });
 
-  test('renders null for status "IDLE', () => {
-    const { container } = render(
+  test('renders null for status "IDLE"', () => {
+    const childRef = React.createRef();
+
+    const { queryByTestId } = render(
       <Loader status={REQUEST_STATUS.IDLE}>
-        <div>child</div>
+        <div ref={childRef}>child</div>
       </Loader>
     );
 
-    expect(container.firstChild).not.toBeInTheDocument();
+    const loader = queryByTestId('loader');
+
+    expect(loader).not.toBeInTheDocument();
+    expect(childRef.current).not.toBeInTheDocument();
   });
 
-  test('renders null for status "ERROR', () => {
-    const { container } = render(
+  test('renders null for status "ERROR"', () => {
+    const childRef = React.createRef();
+
+    const { queryByTestId } = render(
       <Loader status={REQUEST_STATUS.ERROR}>
-        <div>child</div>
+        <div ref={childRef}>child</div>
       </Loader>
     );
 
-    expect(container.firstChild).not.toBeInTheDocument();
+    const loader = queryByTestId('loader');
+
+    expect(loader).not.toBeInTheDocument();
+    expect(childRef.current).not.toBeInTheDocument();
   });
 });

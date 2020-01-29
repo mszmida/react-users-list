@@ -10,9 +10,12 @@ function UsersList() {
   return (
     <Loader status={status}>
       <div className={styles.component}>
-        {users.map(user => (
-          <User key={user.id} user={user} />
-        ))}
+        {users.length === 0 && (
+          <div className={styles.noData}>No users found.</div>
+        )}
+
+        {users.length > 0 &&
+          users.map(user => <User key={user.id} user={user} />)}
       </div>
     </Loader>
   );

@@ -6,7 +6,7 @@ import { REQUEST_STATUS } from '../../../enums';
 import UsersList from '../UsersList';
 
 describe('<UsersList /> component', () => {
-  test(`renders users list with appropriate data for status "${REQUEST_STATUS.SUCCESS}"`, () => {
+  test(`renders users list for status "${REQUEST_STATUS.SUCCESS}"`, () => {
     const usersData = [
       {
         id: 1,
@@ -25,7 +25,7 @@ describe('<UsersList /> component', () => {
       }
     ];
 
-    const { getAllByTestId } = render(
+    const { queryByTestId, getAllByTestId } = render(
       <UsersProvider
         value={{
           status: REQUEST_STATUS.SUCCESS,
@@ -36,15 +36,31 @@ describe('<UsersList /> component', () => {
       </UsersProvider>
     );
 
+    const loader = queryByTestId('loader');
     const users = getAllByTestId('user');
 
+    expect(loader).not.toBeInTheDocument();
     expect(users.length).toBe(3);
+  });
 
-    users.forEach((user, index) => {
-      expect(user).toBeInTheDocument();
-      expect(user).toHaveTextContent(`${usersData[index].id}.`);
-      expect(user).toHaveTextContent(`${usersData[index].name}`);
-      expect(user).toHaveTextContent(`@${usersData[index].username}`);
-    });
+  test(`renders appropriate message for no users and status "${REQUEST_STATUS.SUCCESS}"`, () => {
+    const { queryByTestId, queryAllByTestId, getByText } = render(
+      <UsersProvider
+        value={{
+          status: REQUEST_STATUS.SUCCESS,
+          users: []
+        }}
+      >
+        <UsersList />
+      </UsersProvider>
+    );
+
+    const loader = queryByTestId('loader');
+    const users = queryAllByTestId('user');
+    const message = getByText(/no users/i);
+
+    expect(loader).not.toBeInTheDocument();
+    expect(users.length).toBe(0);
+    expect(message).toBeInTheDocument();
   });
 });

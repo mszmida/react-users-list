@@ -1,49 +1,35 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { render, wait } from '@testing-library/react';
 
 import App from './App';
 
 describe('<App /> root component', () => {
+  beforeEach(() => {
+    jest.spyOn(global, 'fetch');
+  });
+
+  afterEach(() => {
+    global.fetch.mockRestore();
+  });
+
   test('renders without any errors', async () => {
     const response = {
       ok: true,
-      json: () =>
-        Promise.resolve([
-          {
-            id: 1,
-            name: 'John Doe',
-            username: 'johny'
-          }
-        ])
+      json: () => Promise.resolve([])
     };
 
-    jest.spyOn(global, 'fetch').mockResolvedValue(response);
+    global.fetch.mockResolvedValue(response);
 
-    const {
-      getByText,
-      getByPlaceholderText,
-      getByTestId,
-      queryByTestId,
-      findByTestId
-    } = render(<App />);
+    const { getByText, getByPlaceholderText } = render(<App />);
 
     const pageHeader = getByText(/users list/i);
     const searchInput = getByPlaceholderText(/search by user name/i);
-    let loader = getByTestId('loader');
+    const footerText = getByText(/powered by/i);
 
     expect(pageHeader).toBeInTheDocument();
     expect(searchInput).toBeInTheDocument();
-    expect(loader).toBeInTheDocument();
+    expect(footerText).toBeInTheDocument();
 
-    const user = await findByTestId('user');
-    loader = queryByTestId('loader');
-
-    expect(loader).not.toBeInTheDocument();
-    expect(user).toBeInTheDocument();
-    expect(user).toHaveTextContent('1.');
-    expect(user).toHaveTextContent('John Doe');
-    expect(user).toHaveTextContent('@johny');
-
-    global.fetch.mockRestore();
+    await wait();
   });
 });

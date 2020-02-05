@@ -5,7 +5,7 @@ import reactLogo from '../../assets/logo.svg';
 
 function Footer() {
   return (
-    <footer className={styles.content}>
+    <footer className={styles.component}>
       <span>Powered by</span>
 
       <a

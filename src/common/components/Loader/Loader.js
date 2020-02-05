@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import styles from './Loader.module.css';
+import styles from './Loader.module.scss';
 import { REQUEST_STATUS } from '../../enums';
 
 function Loader({ status, children }) {

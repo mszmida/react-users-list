@@ -1,6 +1,6 @@
 import React from 'react';
 
-import styles from './UsersPage.module.css';
+import styles from './UsersPage.module.scss';
 import { FilterableUsersList } from '../../common/components';
 
 function UsersPage() {

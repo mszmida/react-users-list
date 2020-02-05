@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import styles from './SearchInput.module.css';
+import styles from './SearchInput.module.scss';
 
 function SearchInput({ placeholder, onChange }) {
   return (
